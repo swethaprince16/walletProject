@@ -13,6 +13,7 @@ import com.project.dto.UserResponseDto;
 import com.project.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
@@ -51,6 +52,7 @@ public class UserOperationService {
                 .build();
     }
 
+    @Cacheable(value = "users", key = "#userId",  condition = "#result != null")
     public UserDetailsDto getUserDetailsById(Long userId) {
 
         User user =  userRepository.findById(userId).orElseThrow(

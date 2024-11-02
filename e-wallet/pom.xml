@@ -29,6 +29,7 @@
         <module>ewallet-exceptions</module>
         <module>transaction-service</module>
         <module>transaction-service</module>
+        <module>redis-module</module>
     </modules>
 	<scm>
 		<connection/>
